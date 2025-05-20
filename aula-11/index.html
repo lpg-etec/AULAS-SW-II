@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let submit = async () => {
+            let cep = document.getElementById('cep');
+            let res = await (await fetch(`http://viacep.com.br/ws/${cep.value}/json/`)).json();
+
+            document.getElementById('logradouro').textContent = res.logradouro;
+            document.getElementById('bairro').textContent = res.bairro;
+            document.getElementById('localidade').textContent = res.localidade;
+            document.getElementById('uf').textContent = res.uf;
+            document.getElementById('estado').textContent = res.estado;
+            document.getElementById('regiao').textContent = res.regiao;
+        }
+    </script>
+
+    <h3>CEP</h3>
+    <input type="text" id="cep">
+    <input type="submit" id="submit" onclick="submit()">
+
+    <div id="data">
+        <div>
+            <span>Logradouro:</span>
+            <span id="logradouro"></span>
+        </div>
+        <div>
+            <span>Bairro:</span>
+            <span id="bairro"></span>
+        </div>
+        <div>
+            <span>Localidade:</span>
+            <span id="localidade"></span>
+        </div>
+        <div>
+            <span>UF:</span>
+            <span id="uf"></span>
+        </div>
+        <div>
+            <span>Estado:</span>
+            <span id="estado"></span>
+        </div>
+        <div>
+            <span>Região:</span>
+            <span id="regiao"></span>
+        </div>
+    </div>
+</body>
+</html>
